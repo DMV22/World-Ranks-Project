@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@200;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+
+:root {
+  --main-color: #1B1D1F;
+}
 
 /* Reset some default styles */
 body,
@@ -23,25 +27,73 @@ a {
 
 /* Add some styles for body*/
 body {
-  min-height: 100vh;
-  max-width: 1280px;
   margin: 0 auto;
-  background: #020617;
+  background: #000;
   color: #cbd5e1;
-  font-family: 'Sora', sans-serif;
-  line-height: 1.5;
-  background-image: radial-gradient(#0f172a 1px, transparent 0), radial-gradient(#0f172a 1px, transparent 0);
-  background-position: 0 0, 25px 25px;
-  background-attachment: fixed;
-  background-size: 50px 50px;
-  overflow-x: hidden;
-  padding: 4rem;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+  font-family: "Be Vietnam Pro", sans-serif;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  position: relative;
+}
+
+.header__logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.country-table thead {
+  position: relative;
+}
+
+.country-table thead::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -25px;
+  border: 1px solid #282B30;
+}
+
+.country-table tbody:before {
+  /* This doesn't work because of border-collapse */
+  line-height: 2em;
+  content: ".";
+  color: var(--main-color);
+  display: block;
+}
+
+th {
+  text-align: start;
+}
+
+thead tr,
+tbody tr {
+  display: grid;
+  gap: 32px;
+  /* 1fr для першого стовпця, 2fr для інших */
+  grid-template-columns: 1fr repeat(4, 2fr);
+}
+
+tbody {
+  display: grid;
+  gap: 30px;
+}
+
+tbody tr {
+  align-items: center;
+}
+
+.main {
+  padding: 50px;
+  background: var(--main-color);
+  border: none;
+  border-radius: 16px
 }

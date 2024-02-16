@@ -10,25 +10,44 @@ interface MainProps {
 
 function Main({ data, isLoading, isError }: MainProps) {
   return (
-    <main className="main-container">
+    <main className="main container">
       {isError && <div>Something went wrong ...</div>}
 
       {isLoading ? (
         <div>Loading ...</div>
       ) : (
-        <ul className="link-list">
-          {data.map((country, index) => (
-            <li key={index} className="link-card">
-              <img src={country.flags.png} alt={country.name.common} />
-              <div>
-                <h2 className="link-title">{country.name.common}</h2>
-                <p>Population: {country.population}</p>
-                <p>Area (km²): {country.area}</p>
-                <p>Region: {country.region}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <table className="country-table">
+          <thead>
+            <tr>
+              <th>Flag</th>
+              <th>Name</th>
+              <th>Population</th>
+              <th>Area (km²)</th>
+              <th>Region</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((country, index) => (
+              <tr key={index}>
+                <td>
+                  <img
+                    src={country.flags.png}
+                    alt={country.name.common}
+                    style={{
+                      width: "70px",
+                      height: "50px",
+                      borderRadius: "6px",
+                    }}
+                  />
+                </td>
+                <td>{country.name.common}</td>
+                <td>{country.population}</td>
+                <td>{country.area}</td>
+                <td>{country.region}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </main>
   );

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Header from "./components/Header";
-import Main from "./components/Main";
-import Footer from "./components/Footer";
-import Country from "./interfaces/Country";
+import { useEffect, useState } from "react";
+import Header from "@/components/Header";
+import Main from "@/components/Main";
+import Footer from "@/components/Footer";
+import { type Country } from "@/interfaces/Country";
 import "./index.css";
 
 function App() {
@@ -16,8 +16,9 @@ function App() {
       setIsLoading(true);
 
       try {
-        const response = await fetch("https://restcountries.com/v3.1/all");
+        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,population,flags,area,region");
         const result = await response.json();
+        result.sort((a: any, b: any) => b.population - a.population)
         setData(result);
       } catch (error) {
         setIsError(true);

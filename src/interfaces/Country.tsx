@@ -1,4 +1,4 @@
-interface Country {
+export interface Country {
   flags: {
     png: string;
   };
@@ -9,5 +9,3 @@ interface Country {
   area: number;
   region: string;
 }
-
-export default Country;

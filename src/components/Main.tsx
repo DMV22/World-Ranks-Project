@@ -1,7 +1,4 @@
-import React from "react";
-import Country from "../interfaces/Country";
-import "../index.css";
-
+import { type Country } from "@/interfaces/Country";
 interface MainProps {
   data: Country[];
   isLoading: boolean;
@@ -41,8 +38,8 @@ function Main({ data, isLoading, isError }: MainProps) {
                   />
                 </td>
                 <td>{country.name.common}</td>
-                <td>{country.population}</td>
-                <td>{country.area}</td>
+                <td>{country.population.toLocaleString('en-US')}</td>
+                <td>{country.area.toLocaleString('en-US')}</td>
                 <td>{country.region}</td>
               </tr>
             ))}

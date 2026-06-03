@@ -1,11 +1,11 @@
 import { type Country } from "@/interfaces/Country";
-interface MainProps {
+interface CountryListProps {
   data: Country[];
   isLoading: boolean;
   isError: boolean;
 }
 
-function Main({ data, isLoading, isError }: MainProps) {
+function CountryList({ data, isLoading, isError }: CountryListProps) {
   return (
     <main className="main container">
       {isError && <div>Something went wrong ...</div>}
@@ -50,4 +50,4 @@ function Main({ data, isLoading, isError }: MainProps) {
   );
 }
 
-export default Main;
+export default CountryList;

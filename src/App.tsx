@@ -1,7 +1,7 @@
-import Header from "@/components/Header";
-import Main from "@/components/Main";
-import Footer from "@/components/Footer";
-import { useCountries } from "@/hooks/useCountry";
+import Header from "@/components/header";
+import Main from "@/components/country-list";
+import Footer from "@/components/footer";
+import { useCountries } from "@/hooks/use-country";
 import "./index.css";
 
 

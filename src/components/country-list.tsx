@@ -1,4 +1,6 @@
-import { type Country } from "@/interfaces/Country";
+import { type Country } from "@/interfaces/country";
+import styles from "./CountryList.module.css";
+
 interface CountryListProps {
   data: Country[];
   isLoading: boolean;
@@ -6,47 +8,69 @@ interface CountryListProps {
 }
 
 function CountryList({ data, isLoading, isError }: CountryListProps) {
-  return (
-    <main className="main container">
-      {isError && <div>Something went wrong ...</div>}
+  if (isError) {
+    return (
+      <main className={styles.wrapper}>
+        <div>Something went wrong. Please try again later.</div>
+      </main>
+    );
+  }
 
-      {isLoading ? (
+  if (isLoading) {
+    return (
+      <main className={styles.wrapper}>
         <div>Loading ...</div>
-      ) : (
-        <table className="country-table">
+      </main>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <main className={styles.wrapper}>
+        <div>No countries match current filters.</div>
+      </main>
+    );
+  }
+
+  return (
+    <section className={styles.wrapper}>
+      <div className={styles.tableScroller}>
+        <table className={styles.table}>
           <thead>
             <tr>
-              <th>Flag</th>
+              <th className={styles.flagCell}>Flag</th>
               <th>Name</th>
               <th>Population</th>
               <th>Area (km²)</th>
-              <th>Region</th>
+              <th className={styles.hideOnMobile}>Region</th>
             </tr>
           </thead>
+
           <tbody>
-            {data.map((country, index) => (
-              <tr key={index}>
-                <td>
+            {data.map((country) => (
+              <tr key={country.cca3}>
+                <td className={styles.flagCell}>
                   <img
                     src={country.flags.png}
                     alt={country.name.common}
-                    style={{
-                      width: "70px",
-                      height: "50px",
-                      borderRadius: "6px",
-                    }}
+                    className={styles.flag}
                   />
                 </td>
-                <td>{country.name.common}</td>
-                <td>{country.population.toLocaleString('en-US')}</td>
-                <td>{country.area.toLocaleString('en-US')}</td>
-                <td>{country.region}</td>
+
+                <td className={styles.nameCell}>{country.name.common}</td>
+                <td>{country.population.toLocaleString("en-US")}</td>
+                <td>
+                  {country.area != null
+                    ? country.area.toLocaleString("en-US")
+                    : "N/A"}
+                </td>
+                <td className={styles.hideOnMobile}>{country.region}</td>
               </tr>
             ))}
           </tbody>
         </table>
-      )}
-    </main>
+      </div>
+    </section>
   );
 }
 

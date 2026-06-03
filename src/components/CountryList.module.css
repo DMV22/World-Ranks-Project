@@ -1,0 +1,102 @@
+.wrapper {
+  min-width: 0;
+}
+
+.tableScroller {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table thead th {
+  padding: 0 12px 16px 0;
+  border-bottom: 1px solid #2f3542;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: #a1a1aa;
+  white-space: nowrap;
+}
+
+.table tbody td {
+  padding: 18px 12px 18px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #f3f4f6;
+  vertical-align: middle;
+}
+
+.flagCell {
+  width: 64px;
+}
+
+.nameCell {
+  min-width: 140px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.flag {
+  display: block;
+  width: 44px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .table {
+    min-width: 640px;
+  }
+
+  .table tbody td {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .table {
+    min-width: 560px;
+  }
+
+  .table thead th,
+  .table tbody td {
+    font-size: 14px;
+  }
+
+  .hideOnTablet {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .table {
+    min-width: 520px;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding-right: 8px;
+    font-size: 13px;
+  }
+
+  .flagCell {
+    width: 52px;
+  }
+
+  .flag {
+    width: 36px;
+    height: 26px;
+  }
+
+  .hideOnMobile {
+    display: none;
+  }
+}

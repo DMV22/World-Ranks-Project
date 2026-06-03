@@ -1,16 +1,15 @@
 import useSWR from "swr";
 import axios from "axios";
-import { type Country } from "@/interfaces/Country";
+import type { Country } from "@/interfaces/country";
 
 const fetcher = async (url: string): Promise<Country[]> => {
   const response = await axios.get<Country[]>(url);
-
-  return response.data.sort((a: Country, b: Country) => b.population - a.population);
+  return response.data;
 };
 
 export function useCountries() {
-  const { data, error, isLoading } = useSWR<Country[]>(
-    "https://restcountries.com/v3.1/all?fields=name,population,flags,area,region",
+  const { data, error, isLoading } = useSWR<Country[], Error>(
+    `https://restcountries.com/v3.1/all?fields=name,population,flags,area,region,independent,unMember`,
     fetcher
   );
 

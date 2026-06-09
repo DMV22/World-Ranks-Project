@@ -5,24 +5,38 @@ export function filterCountries(
   countries: Country[],
   filters: FilterState
 ): Country[] {
+  const { search, region, sortBy, unMember, independent } = filters;
+
   let result = [...countries];
 
+  const normalizedSearch = search.trim().toLowerCase();
 
-  if (filters.region.length > 0) {
-    result = result.filter((country) =>
-      filters.region.includes(country.region)
+  if (normalizedSearch) {
+    result = result.filter((country) => {
+      const countryName = country.name.common.toLowerCase();
+      const countryRegion = country.region.toLowerCase();
+
+      return (
+        countryName.includes(normalizedSearch) ||
+        countryRegion.includes(normalizedSearch)
+      );
+    });
+  }
+
+  if (region.length > 0) {
+    result = result.filter((country) => region.includes(country.region)
     );
   }
 
-  if (filters.independent) {
+  if (independent) {
     result = result.filter((country) => country.independent);
   }
 
-  if (filters.unMember) {
+  if (unMember) {
     result = result.filter((country) => country.unMember);
   }
 
-  switch (filters.sortBy) {
+  switch (sortBy) {
     case "population":
       result.sort((a, b) => b.population - a.population);
       break;

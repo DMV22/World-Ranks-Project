@@ -4,13 +4,14 @@ import styles from "./FiltersSidebar.module.css";
 
 interface FiltersSidebarProps {
   filters: FilterState;
+  totalCountries: number;
   updateFilter: <K extends keyof FilterState>(
     key: K,
     value: FilterState[K]
   ) => void;
 }
 
-export default function FiltersSidebar({ filters, updateFilter }: FiltersSidebarProps) {
+export default function FiltersSidebar({ filters, updateFilter, totalCountries }: FiltersSidebarProps) {
   const handleRegionToggle = (region: Region) => {
     const exists = filters.region.includes(region);
 
@@ -24,7 +25,27 @@ export default function FiltersSidebar({ filters, updateFilter }: FiltersSidebar
 
   return (
     <aside className={styles.sidebar}>
-      {/* Sort */}
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>
+          Found {totalCountries} countries
+        </h2>
+      </div>
+
+      <div className={styles.section}>
+        <label htmlFor="country-search" className={styles.visuallyHidden}>
+          Search countries
+        </label>
+
+        <input
+          id="country-search"
+          type="search"
+          value={filters.search}
+          onChange={(e) => updateFilter("search", e.target.value)}
+          placeholder="Search by Name, Region, Subregion"
+          className={styles.searchInput}
+        />
+      </div>
+
       <div className={styles.section}>
         <label htmlFor="sort-by" className={styles.fieldLabel}>
           Sort by

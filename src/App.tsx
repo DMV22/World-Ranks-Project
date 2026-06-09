@@ -36,6 +36,7 @@ function App() {
             <FiltersSidebar
               filters={filters}
               updateFilter={updateFilter}
+              totalCountries={filteredCountries.length}
             />
 
             <div className={styles.mainContent}>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { FilterState } from "@/interfaces/country-filters";
 
 export const initialFilters: FilterState = {
+  search: "",
   region: [],
   sortBy: "population",
   independent: false,

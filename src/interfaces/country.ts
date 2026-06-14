@@ -1,30 +1,43 @@
 import type { Region } from "@/constants/regions";
 
 export interface Country {
-  cca3: string;
-  flags: {
-    png: string;
-    svg?: string;
-    alt?: string;
+  codes: {
+    alpha_3: string;
   };
-  name: {
+  flag: {
+    url_png: string;
+    url_svg?: string;
+    description?: string;
+  };
+  names: {
     common: string;
     official: string;
   };
   population: number;
-  area?: number;
+  area?: {
+    kilometers?: number;
+  };
   region: Region;
   subregion?: string;
-  capital?: string[];
+  capitals?: {
+    name: string;
+    coordinates?: { lat: number; lng: number };
+    attributes?: { primary?: boolean };
+  }[];
   continents: string[];
   borders?: string[];
-  languages?: Record<string, string>;
-  currencies?: Record<string,
-    {
-      name: string;
-      symbol?: string;
-    }
-  >;
-  unMember: boolean;
-  independent?: boolean;
+  languages?: {
+    iso_639_3?: string;
+    name: string;
+    native_name?: string;
+  }[];
+  currencies?: {
+    code: string;
+    name: string;
+    symbol?: string;
+  }[];
+  classification: {
+    un_member: boolean;
+    sovereign?: boolean;
+  };
 }

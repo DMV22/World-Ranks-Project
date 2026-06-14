@@ -48,20 +48,20 @@ function CountryList({ data, isLoading, isError }: CountryListProps) {
 
           <tbody>
             {data.map((country) => (
-              <tr key={country.cca3}>
+              <tr key={country.codes.alpha_3}>
                 <td className={styles.flagCell}>
                   <img
-                    src={country.flags.png}
-                    alt={country.name.common}
+                    src={country.flag.url_png}
+                    alt={country.names.common}
                     className={styles.flag}
                   />
                 </td>
 
-                <td className={styles.nameCell}>{country.name.common}</td>
+                <td className={styles.nameCell}>{country.names.common}</td>
                 <td>{country.population.toLocaleString("en-US")}</td>
                 <td>
-                  {country.area != null
-                    ? country.area.toLocaleString("en-US")
+                  {country.area?.kilometers != null
+                    ? country.area.kilometers.toLocaleString("en-US")
                     : "N/A"}
                 </td>
                 <td className={styles.hideOnMobile}>{country.region}</td>

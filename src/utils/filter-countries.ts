@@ -13,7 +13,7 @@ export function filterCountries(
 
   if (normalizedSearch) {
     result = result.filter((country) => {
-      const countryName = country.name.common.toLowerCase();
+      const countryName = country.names.common.toLowerCase();
       const countryRegion = country.region.toLowerCase();
 
       return (
@@ -24,16 +24,15 @@ export function filterCountries(
   }
 
   if (region.length > 0) {
-    result = result.filter((country) => region.includes(country.region)
-    );
+    result = result.filter((country) => region.includes(country.region));
   }
 
   if (independent) {
-    result = result.filter((country) => country.independent);
+    result = result.filter((country) => country.classification.sovereign);
   }
 
   if (unMember) {
-    result = result.filter((country) => country.unMember);
+    result = result.filter((country) => country.classification.un_member);
   }
 
   switch (sortBy) {
@@ -41,10 +40,10 @@ export function filterCountries(
       result.sort((a, b) => b.population - a.population);
       break;
     case "area":
-      result.sort((a, b) => (b.area ?? 0) - (a.area ?? 0));
+      result.sort((a, b) => (b.area?.kilometers ?? 0) - (a.area?.kilometers ?? 0));
       break;
     case "name":
-      result.sort((a, b) => a.name.common.localeCompare(b.name.common));
+      result.sort((a, b) => a.names.common.localeCompare(b.names.common));
       break;
   }
 

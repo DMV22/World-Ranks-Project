@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { type Country } from "@/interfaces/country";
+
 import styles from "./CountryList.module.css";
 
 interface CountryListProps {
@@ -57,7 +59,11 @@ function CountryList({ data, isLoading, isError }: CountryListProps) {
                   />
                 </td>
 
-                <td className={styles.nameCell}>{country.names.common}</td>
+                <td className={styles.nameCell}>
+                  <Link to={`/country/${country.codes.alpha_3}`} className={styles.countryLink}>
+                    {country.names.common}
+                  </Link>
+                </td>
                 <td>{country.population.toLocaleString("en-US")}</td>
                 <td>
                   {country.area?.kilometers != null

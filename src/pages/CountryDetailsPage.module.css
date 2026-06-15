@@ -1,0 +1,9 @@
+.main {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #05070b 0%, #090b10 100%);
+}

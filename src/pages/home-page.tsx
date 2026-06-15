@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 import { useCountries } from "@/hooks/use-country";
 import useCountryFilters from "@/hooks/use-country-filters";
 import { usePagination } from "@/hooks/use-pagination";
+import { useDebounce } from "@/hooks/use-debounce";
 
 import { filterCountries } from "@/utils/filter-countries";
 
@@ -19,8 +20,14 @@ function HomePage() {
   const { countries, isLoading, isError } = useCountries();
   const { filters, updateFilter } = useCountryFilters();
 
-  const filteredCountries = useMemo(() => filterCountries(countries, filters),
-    [countries, filters]
+  const debouncedSearch = useDebounce(filters.search, 400);
+
+  const debounceFilters = useMemo(() => ({ ...filters, search: debouncedSearch }),
+    [filters, debouncedSearch]
+  )
+
+  const filteredCountries = useMemo(() => filterCountries(countries, debounceFilters),
+    [countries, debounceFilters]
   );
 
   const { totalPages, currentPage, paginatedCountries, goNext, goPrev } =

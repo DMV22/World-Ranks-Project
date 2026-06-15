@@ -7,11 +7,11 @@ import Footer from "@/components/footer";
 
 import { useCountries } from "@/hooks/use-country";
 import useCountryFilters from "@/hooks/use-country-filters";
-
-import { filterCountries } from "@/utils/filter-countries";
 import { usePagination } from "@/hooks/use-pagination";
 
-import styles from "@/App.module.css";
+import { filterCountries } from "@/utils/filter-countries";
+
+import styles from "./HomePage.module.css";
 
 const ITEMS_PER_PAGE = 12;
 
